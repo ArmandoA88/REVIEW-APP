@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review App Admin Dashboard</title>
+    <link rel="stylesheet" href="src/css/admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="logo">
+                <h1>Review App Admin</h1>
+            </div>
+            <div class="user-info">
+                <span id="current-user">Admin User</span>
+                <button id="logout-btn" class="btn btn-outline">Logout</button>
+            </div>
+        </header>
+        
+        <div class="admin-content">
+            <nav class="sidebar">
+                <ul class="nav-menu">
+                    <li class="nav-item active" data-tab="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-tab="products">
+                        <i class="fas fa-box"></i>
+                        <span>Products</span>
+                    </li>
+                    <li class="nav-item" data-tab="promotions">
+                        <i class="fas fa-gift"></i>
+                        <span>Promotions</span>
+                    </li>
+                    <li class="nav-item" data-tab="submissions">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Submissions</span>
+                    </li>
+                    <li class="nav-item" data-tab="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </li>
+                </ul>
+            </nav>
+            
+            <main class="main-content">
+                <!-- Dashboard Tab -->
+                <section id="dashboard" class="tab-content active">
+                    <h2>Dashboard</h2>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Submissions</h3>
+                                <p class="stat-value">124</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Satisfaction Rate</h3>
+                                <p class="stat-value">87%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Products</h3>
+                                <p class="stat-value">12</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Promotions</h3>
+                                <p class="stat-value">8</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-charts">
+                        <div class="chart-container">
+                            <h3>Satisfaction Distribution</h3>
+                            <div class="chart" id="satisfaction-chart">
+                                <div class="chart-bar" style="height: 70%;" data-label="Very Satisfied"></div>
+                                <div class="chart-bar" style="height: 20%;" data-label="Somewhat Satisfied"></div>
+                                <div class="chart-bar" style="height: 5%;" data-label="Neutral"></div>
+                                <div class="chart-bar" style="height: 3%;" data-label="Somewhat Dissatisfied"></div>
+                                <div class="chart-bar" style="height: 2%;" data-label="Very Dissatisfied"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3>Platform Distribution</h3>
+                            <div class="chart" id="platform-chart">
+                                <div class="chart-bar" style="height: 60%;" data-label="Amazon"></div>
+                                <div class="chart-bar" style="height: 25%;" data-label="Walmart"></div>
+                                <div class="chart-bar" style="height: 15%;" data-label="eBay"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-submissions">
+                        <div class="section-header">
+                            <h3>Recent Submissions</h3>
+                            <button class="btn btn-outline" id="view-all-submissions">View All</button>
+                        </div>
+                        
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Product</th>
+                                    <th>Platform</th>
+                                    <th>Satisfaction</th>
+                                    <th>Promotion</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-submissions-table">
+                                <!-- Sample data, would be populated dynamically -->
+                                <tr>
+                                    <td>03/05/2025</td>
+                                    <td>John Smith</td>
+                                    <td>Premium Wireless Earbuds</td>
+                                    <td>Amazon</td>
+                                    <td>Very Satisfied</td>
+                                    <td>Free Product Sample</td>
+                                </tr>
+                                <tr>
+                                    <td>03/04/2025</td>
+                                    <td>Jane Doe</td>
+                                    <td>Smart Water Bottle</td>
+                                    <td>Walmart</td>
+                                    <td>Somewhat Satisfied</td>
+                                    <td>20% Discount</td>
+                                </tr>
+                                <tr>
+                                    <td>03/03/2025</td>
+                                    <td>Robert Johnson</td>
+                                    <td>Fitness Tracker Watch</td>
+                                    <td>eBay</td>
+                                    <td>Very Satisfied</td>
+                                    <td>Extended Warranty</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Products Tab -->
+                <section id="products" class="tab-content">
+                    <div class="section-header">
+                        <h2>Products</h2>
+                        <button class="btn btn-primary" id="add-product-btn">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                    </div>
+                    
+                    <div class="search-filter">
+                        <input type="text" id="product-search" placeholder="Search products...">
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>Amazon ASIN</th>
+                                <th>Walmart Product ID</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table">
+                            <!-- Sample data, would be populated dynamically -->
+                            <tr>
+                                <td>1</td>
+                                <td>Premium Wireless Earbuds</td>
+                                <td>B08QDTW1MP</td>
+                                <td>123456789</td>
+                                <td class="actions">
+                                    <button class="btn-icon edit-btn" data-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="1">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Smart Water Bottle</td>
+                                <td>B09CGHZQKJ</td>
+                                <td>987654321</td>
+                                <td class="actions">
+                                    <button class="btn-icon edit-btn" data-id="2">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="2">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Fitness Tracker Watch</td>
+                                <td>B07XLMVLK5</td>
+                                <td>456789123</td>
+                                <td class="actions">
+                                    <button class="btn-icon edit-btn" data-id="3">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="3">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                
+                <!-- Promotions Tab -->
+                <section id="promotions" class="tab-content">
+                    <div class="section-header">
+                        <h2>Promotions</h2>
+                        <button class="btn btn-primary" id="add-promotion-btn">
+                            <i class="fas fa-plus"></i> Add Promotion
+                        </button>
+                    </div>
+                    
+                    <div class="search-filter">
+                        <input type="text" id="promotion-search" placeholder="Search promotions...">
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Promotion Name</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="promotions-table">
+                            <!-- Sample data, would be populated dynamically -->
+                            <tr>
+                                <td>1</td>
+                                <td>Free Product Sample</td>
+                                <td>Receive a free sample of one of our new products</td>
+                                <td class="actions">
+                                    <button class="btn-icon edit-btn" data-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="1">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>20% Discount on Next Purchase</td>
+                                <td>Receive a 20% discount code for your next purchase</td>
+                                <td class="actions">
+                                    <button class="btn-icon edit-btn" data-id="2">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="2">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Extended Warranty</td>
+                                <td>Receive an additional 1-year warranty on your product</td>
+                                <td class="actions">
+                                    <button class="btn-icon edit-btn" data-id="3">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="3">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                
+                <!-- Submissions Tab -->
+                <section id="submissions" class="tab-content">
+                    <div class="section-header">
+                        <h2>Submissions</h2>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" id="export-csv-btn">
+                                <i class="fas fa-file-csv"></i> Export CSV
+                            </button>
+                            <button class="btn btn-outline" id="export-excel-btn">
+                                <i class="fas fa-file-excel"></i> Export Excel
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label for="date-range">Date Range:</label>
+                            <select id="date-range">
+                                <option value="all">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="custom">Custom Range</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="product-filter">Product:</label>
+                            <select id="product-filter">
+                                <option value="all">All Products</option>
+                                <option value="1">Premium Wireless Earbuds</option>
+                                <option value="2">Smart Water Bottle</option>
+                                <option value="3">Fitness Tracker Watch</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="platform-filter">Platform:</label>
+                            <select id="platform-filter">
+                                <option value="all">All Platforms</option>
+                                <option value="amazon">Amazon</option>
+                                <option value="walmart">Walmart</option>
+                                <option value="ebay">eBay</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="satisfaction-filter">Satisfaction:</label>
+                            <select id="satisfaction-filter">
+                                <option value="all">All Levels</option>
+                                <option value="very-satisfied">Very Satisfied</option>
+                                <option value="somewhat-satisfied">Somewhat Satisfied</option>
+                                <option value="neutral">Neutral</option>
+                                <option value="somewhat-dissatisfied">Somewhat Dissatisfied</option>
+                                <option value="very-dissatisfied">Very Dissatisfied</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="apply-filters-btn">Apply Filters</button>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Product</th>
+                                <th>Platform</th>
+                                <th>Order Number</th>
+                                <th>Satisfaction</th>
+                                <th>Promotion</th>
+                                <th>Newsletter</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="submissions-table">
+                            <!-- Sample data, would be populated dynamically -->
+                            <tr>
+                                <td>1</td>
+                                <td>03/05/2025</td>
+                                <td>John Smith</td>
+                                <td>john.smith@example.com</td>
+                                <td>Premium Wireless Earbuds</td>
+                                <td>Amazon</td>
+                                <td>123-4567890-1234567</td>
+                                <td>Very Satisfied</td>
+                                <td>Free Product Sample</td>
+                                <td>Yes</td>
+                                <td class="actions">
+                                    <button class="btn-icon view-btn" data-id="1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="1">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>03/04/2025</td>
+                                <td>Jane Doe</td>
+                                <td>jane.doe@example.com</td>
+                                <td>Smart Water Bottle</td>
+                                <td>Walmart</td>
+                                <td>123456789012345</td>
+                                <td>Somewhat Satisfied</td>
+                                <td>20% Discount</td>
+                                <td>No</td>
+                                <td class="actions">
+                                    <button class="btn-icon view-btn" data-id="2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="2">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>03/03/2025</td>
+                                <td>Robert Johnson</td>
+                                <td>robert.johnson@example.com</td>
+                                <td>Fitness Tracker Watch</td>
+                                <td>eBay</td>
+                                <td>12-34567-89012</td>
+                                <td>Very Satisfied</td>
+                                <td>Extended Warranty</td>
+                                <td>Yes</td>
+                                <td class="actions">
+                                    <button class="btn-icon view-btn" data-id="3">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon delete-btn" data-id="3">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="pagination">
+                        <button class="pagination-btn" id="prev-page">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">5</span></span>
+                        <button class="pagination-btn" id="next-page">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- Settings Tab -->
+                <section id="settings" class="tab-content">
+                    <h2>Settings</h2>
+                    
+                    <div class="settings-section">
+                        <h3>Email Settings</h3>
+                        <form id="email-settings-form">
+                            <div class="form-group">
+                                <label for="confirmation-email-subject">Confirmation Email Subject:</label>
+                                <input type="text" id="confirmation-email-subject" value="Thank you for your submission!">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="days-to-receive">Days to Receive Promotion:</label>
+                                <input type="number" id="days-to-receive" value="7" min="1" max="30">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mailchimp-api-key">Mailchimp API Key:</label>
+                                <input type="password" id="mailchimp-api-key" value="••••••••••••••••">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mailchimp-list-id">Mailchimp List ID:</label>
+                                <input type="text" id="mailchimp-list-id" value="abc123def456">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Save Email Settings</button>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>User Management</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>admin</td>
+                                    <td>admin@example.com</td>
+                                    <td>Administrator</td>
+                                    <td class="actions">
+                                        <button class="btn-icon edit-btn">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <button class="btn btn-primary" id="add-user-btn">
+                            <i class="fas fa-plus"></i> Add User
+                        </button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="product-modal-title">Add Product</h2>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                
+                <div class="form-group">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="amazon-asin">Amazon ASIN:</label>
+                    <input type="text" id="amazon-asin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="walmart-id">Walmart Product ID:</label>
+                    <input type="text" id="walmart-id" required>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-outline" id="cancel-product">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Promotion Modal -->
+    <div class="modal" id="promotion-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="promotion-modal-title">Add Promotion</h2>
+            <form id="promotion-form">
+                <input type="hidden" id="promotion-id">
+                
+                <div class="form-group">
+                    <label for="promotion-name">Promotion Name:</label>
+                    <input type="text" id="promotion-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="promotion-description">Description:</label>
+                    <textarea id="promotion-description" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-outline" id="cancel-promotion">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Promotion</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- View Submission Modal -->
+    <div class="modal" id="view-submission-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Submission Details</h2>
+            <div id="submission-details">
+                <!-- Will be populated dynamically -->
+            </div>
+            <div class="form-buttons">
+                <button type="button" class="btn btn-outline" id="close-submission-view">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <h2>Admin Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="src/js/admin.js"></script>
+</body>
+</html>

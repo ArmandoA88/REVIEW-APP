@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Review Form</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="form-progress"></div>
+            </div>
+            <div class="step-indicators">
+                <div class="step active" data-step="1">1</div>
+                <div class="step" data-step="2">2</div>
+                <div class="step" data-step="3">3</div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <form id="review-form">
+                <!-- Step 1: Purchase Information -->
+                <div class="form-step active" id="step1">
+                    <h2>Purchase Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="product">Which product did you purchase?*</label>
+                        <select id="product" name="product" required>
+                            <option value="" disabled selected>Select a product</option>
+                            <!-- Products will be loaded dynamically -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="platform">Which platform did you purchase from?*</label>
+                        <select id="platform" name="platform" required>
+                            <option value="" disabled selected>Select a platform</option>
+                            <option value="amazon">Amazon</option>
+                            <option value="ebay">eBay</option>
+                            <option value="walmart">Walmart</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="orderNumber">Order Number*</label>
+                        <input type="text" id="orderNumber" name="orderNumber" required>
+                        <div class="error-message" id="orderNumber-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="satisfaction">How happy are you with our product?*</label>
+                        <select id="satisfaction" name="satisfaction" required>
+                            <option value="" disabled selected>Select your satisfaction level</option>
+                            <option value="very-satisfied">Very Satisfied</option>
+                            <option value="somewhat-satisfied">Somewhat Satisfied</option>
+                            <option value="neutral">Neither Satisfied Nor Dissatisfied</option>
+                            <option value="somewhat-dissatisfied">Somewhat Dissatisfied</option>
+                            <option value="very-dissatisfied">Very Dissatisfied</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn next-btn" id="to-step2">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Personal Information -->
+                <div class="form-step" id="step2">
+                    <h2>Personal Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="promotion">Choose promotion*</label>
+                        <select id="promotion" name="promotion" required>
+                            <option value="" disabled selected>Select a promotion</option>
+                            <!-- Promotions will be loaded dynamically -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">Name*</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email address*</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="email-error"></div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Would you like to be added to our newsletter?</label>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn back-btn" id="back-to-step1">Back</button>
+                        <button type="button" class="btn next-btn" id="to-step3">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Confirmation -->
+                <div class="form-step" id="step3">
+                    <h2>Confirmation</h2>
+                    
+                    <div class="confirmation-message">
+                        <p>Thank you for your submission!</p>
+                        <p>You will receive your <span id="selected-promotion"></span> within <span id="days-to-receive">7</span> days.</p>
+                        
+                        <div class="review-request">
+                            <p>Please consider leaving a quick review using the link below:</p>
+                            <a href="#" id="review-link" target="_blank" class="review-btn">Leave a Review</a>
+                        </div>
+                    </div>
+                    
+                    <div class="form-summary">
+                        <h3>Your Submission Summary</h3>
+                        <div id="submission-summary"></div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn back-btn" id="back-to-step2">Back</button>
+                        <button type="submit" class="btn submit-btn" id="submit-form">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Your Company. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#" id="terms-link">Terms of Service</a>
+                <a href="#" onclick="viewSubmissions(); return false;" class="view-submissions-btn">View Saved Submissions</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Terms of Service Modal -->
+    <div class="modal" id="terms-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Terms of Service</h2>
+            <div class="terms-content">
+                <p>By using this form, you agree to the following terms:</p>
+                <ul>
+                    <li>We collect your information to process your promotion request and improve our products.</li>
+                    <li>Your email will only be used for communication regarding your promotion and, if opted in, for newsletter purposes.</li>
+                    <li>We may store your submission data indefinitely for business purposes.</li>
+                    <li>By submitting this form, you consent to these terms.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="src/js/main.js"></script>
+</body>
+</html>
